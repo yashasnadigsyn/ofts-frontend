@@ -1,0 +1,156 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1A1A1D;
+    background-image: url('background.png'); /* Replace with your actual image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    overflow-y: auto; /* Ensure the page is scrollable */
+    font-family: 'Arial', sans-serif; /* Or any font you prefer; Arial used here for wide availability */
+    color: white; /* White text */
+    display: flex; /* Enable flexbox for centering */
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: flex-start; /* Align content to the top */
+    height: 100vh; /* Full height for index.html */
+}
+
+.top-nav {
+    position: fixed; /* Keep the nav bar fixed at the top */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 1; /* Ensure the nav bar is above other content */
+}
+
+.nav-button {
+    background: none;
+    border: 2px solid rgba(255,255,255, 0.8); /* White border with slight transparency */
+    padding: 8px 16px; /* Slightly reduced padding */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.nav-button.active {
+    background-color: white; /* Solid white background on active */
+    color: black; /* Black text color when active */
+    border-color: white; /* White border when active */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glowing border on active */
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Glowing border on hover */
+}
+
+.main-content {
+    text-align: center; /* Center text within the div */
+    margin-top: 150px; /* Increased margin to make the title and slogan appear more below */
+    flex: 1; /* Allow the main content to grow and fill the available space */
+}
+
+.title {
+    font-size: 4em; /* Large title size */
+    font-weight: bold; /* Bold text */
+    margin-bottom: 0.5em; /* Reduced margin below the title */
+}
+
+.slogan {
+    font-size: 1.2em; /* Slightly larger slogan */
+    opacity: 0.8; /* Slightly transparent slogan */
+}
+
+.additional-content {
+    margin-top: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.additional-section {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    transition: box-shadow 0.3s ease;
+}
+
+.additional-section h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.additional-section p {
+    font-size: 1em;
+    color: #d3d3d3;
+    line-height: 1.6;
+}
+
+.additional-section:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glow effect on hover */
+}
+
+.feature-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three cards in one row */
+    gap: 30px;
+    margin-top: 50px;
+    width: 90%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    padding: 20px; /* Padding around the feature section */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 50px; /* Space below the feature section */
+}
+
+.feature-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.feature-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Initially moved down */
+}
+
+.feature-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature-card:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glow effect on hover */
+}
+
+.feature-card:hover h2 {
+    display: none;
+}
+
+.feature-card:hover p {
+    display: block;
+}
+
+.feature-card p {
+    display: none; /* Initially hide the p tag content */
+    font-size: 1em;
+    color: #d3d3d3;
+    line-height: 1.5;
+    margin-top: 10px; /* Add some margin for better spacing */
+}
