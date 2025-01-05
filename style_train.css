@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1A1A1D;
+    background-image: url('background.png'); /* Same background as index.html */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    overflow-y: auto;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Adjust min-height to accommodate content */
+    min-height: 100vh;
+}
+
+.top-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+.nav-button {
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    padding: 8px 16px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-button.active {
+    background-color: white;
+    color: black;
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.main-content {
+    text-align: left; /* Align text to the left in the guide */
+    margin-top: 150px; /* Adjust as needed */
+    width: 80%; /* Adjust width as needed */
+    flex: 1;
+    padding-bottom: 50px; /* Add some padding at the bottom */
+}
+
+.title {
+    font-size: 3em; /* Smaller title than index.html */
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.slogan {
+    font-size: 1.2em;
+    opacity: 0.8;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.section {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    transition: box-shadow 0.3s ease;
+}
+
+.section:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.section h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section p, .section ul, .section ol, .section pre {
+    font-size: 1em;
+    color: #d3d3d3;
+    line-height: 1.6;
+}
+
+.section ul, .section ol {
+    padding-left: 20px;
+}
+
+.section pre {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.section code {
+    font-family: 'Courier New', Courier, monospace;
+    color: #d3d3d3;
+}
+
+#demoLink{
+    color: #d3d3d3;
+}
