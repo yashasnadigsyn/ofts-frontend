@@ -1,20 +1,28 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const photoGrid = document.getElementById('photoGrid');
     const searchBar = document.getElementById('searchBar');
     const featureSection = document.getElementById('featureSection');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.querySelector('.close');
     let photosData = [];
     let hasScrolled = false;
 
+    // Fetch data from data.json
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
             photosData = data;
+            console.log('Photos Data:', photosData); // Debugging
             displayPhotos(photosData);
         })
         .catch(error => console.error('Error fetching data:', error));
 
+    // Function to display photos
     function displayPhotos(photos) {
-        photoGrid.innerHTML = '';
+        photoGrid.innerHTML = ''; // Clear the grid
+
+        console.log('Displaying Photos:', photos); // Debugging
 
         photos.forEach(photo => {
             const card = document.createElement('div');
@@ -34,6 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             img.alt = photo.caption;
 
+            // Add click event to open the image in a modal
+            img.addEventListener('click', () => {
+                modal.style.display = 'block';
+                modalImage.src = img.src;
+                modalImage.alt = img.alt;
+                document.body.classList.add('modal-open'); // Prevent background scrolling
+            });
+
             // Create a div for face names
             const faceNamesDiv = document.createElement('div');
             faceNamesDiv.classList.add('face-names');
@@ -45,19 +61,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Search functionality (remains the same)
-    searchBar.addEventListener('input', function() {
-        const searchTerm = searchBar.value.toLowerCase();
+    // Search functionality
+    searchBar.addEventListener('input', function () {
+        const searchTerm = searchBar.value.toLowerCase().trim();
+        const searchTerms = searchTerm.split(/\s+/);
+
+        console.log('Search Term:', searchTerm); // Debugging
+        console.log('Search Terms:', searchTerms); // Debugging
+
         const filteredPhotos = photosData.filter(photo => {
             const caption = photo.caption.toLowerCase();
             const faces = photo.faces.toLowerCase();
-            return caption.includes(searchTerm) || faces.includes(searchTerm);
+
+            console.log('Caption:', caption, 'Faces:', faces); // Debugging
+
+            return searchTerms.every(term => caption.includes(term) || faces.includes(term));
         });
+
+        console.log('Filtered Photos:', filteredPhotos); // Debugging
         displayPhotos(filteredPhotos);
     });
 
+    // Close the modal when the close button is clicked
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open'); // Re-enable background scrolling
+    });
+
+    // Close the modal when clicking outside the image
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open'); // Re-enable background scrolling
+        }
+    });
+
     // Scroll event listener to show feature section after scrolling once
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (!hasScrolled) {
             featureSection.classList.add('visible');
             hasScrolled = true;
